@@ -12,3 +12,75 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model User {
+  id String @id @default(uuid())
+  username String? @unique
+  email  String @unique
+  password String
+  profilePic String?
+  createdAt DateTime @default(now())
+  eventsEnrolled String?
+  event UserEnrolledEvents[]
+  tickets Ticket[] 
+}
+
+model UserEnrolledEvents{
+  id String @id @default(uuid())
+  eventIds String
+  userIds String
+  user User @relation(fields: [userIds],references: [id])
+  event Event @relation(fields: [eventIds], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Event {
+  id String @id @default(uuid())
+  eventName String @unique
+  eventDetails String
+  eventImg String
+  eventHostedBy String
+  eventPrice String?
+  eventTags String?
+  userEnrolled UserEnrolledEvents[]
+  eventDate DateTime @updatedAt
+  CreatedAt DateTime @default(now())
+  eventLocation Location[]
+}
+
+model Location {
+  id String @id @default(uuid())
+  lat Float
+  long Float
+  EventId String
+  event Event @relation(fields: [EventId],references: [id]) 
+}
+
+model Ticket {
+  id String @id @default(uuid())
+  eventId String
+  bookingId String
+  paymentId String
+  userId String
+  quantity Int
+  totalFee Float?
+  user User @relation(fields: [userId],references: [id])
+}
+
+model Payment {
+  id String @id @default(uuid())
+  paymentMethod PaymentMethod
+  createdAt DateTime @default(now())
+}
+
+model Booking {
+  id String @id @default(uuid())
+  createdAt DateTime @default(now())
+}
+
+enum PaymentMethod {
+  UPI
+  USDC
+  SOL
+  CASH
+}
