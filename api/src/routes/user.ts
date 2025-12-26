@@ -72,4 +72,52 @@ router.post("/login",async(req,res)=>{
     }
 });
 
+router.post("/update/:id",async(req,res)=>{
+    try {
+        const userId = req.params.id;
+        const updatingOne = req.body.detail;
+        switch (String(updatingOne).toLocaleLowerCase()) {
+            case "username":
+                try {
+                    const user = await prismaClient.user.update({
+                        where:{
+                            id:userId,
+                        },
+                        data:{
+                            username: req.body.username,
+                        }
+                    });
+                    res.json({
+                        message:`user: ${user.email} username added successfully`,
+                    });
+                } catch (error) {
+                    return res.status(402).json({error: "User not created or exist"})
+                };
+                break    
+            case "profilepic":
+                try {
+                    const user = await prismaClient.user.update({
+                        where:{
+                            id:userId,
+                        },
+                        data:{
+                            profilePic: req.body.profilePic,
+                        }
+                    });
+                    res.json({
+                        message:`user: ${user.email} username added successfully`,
+                    });
+                } catch (error) {
+                    return res.status(402).json({error: "User not created or exist"})
+                };
+                break 
+            default:
+                break
+        };
+    } catch (error) {
+        console.error((error as Error).message);
+        res.status(403).send({error:"Error: Something went wrong!"})
+    }
+});
+
 export const userRouter = router; 

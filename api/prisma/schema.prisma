@@ -40,7 +40,7 @@ model Event {
   eventDetails String
   eventImg String
   eventHostedBy String
-  eventPrice String?
+  eventPrice Float?
   eventTags String?
   userEnrolled UserEnrolledEvents[]
   eventDate DateTime @updatedAt
