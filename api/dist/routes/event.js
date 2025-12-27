@@ -16,8 +16,9 @@ exports.eventRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const types_1 = require("../types");
 const db_1 = require("../db/db");
+const middleware_1 = require("../middleware");
 const router = express_1.default.Router();
-router.post("/create", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/create", middleware_1.authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const body = types_1.eventSchema.safeParse(req.body);
         if (!body.success) {

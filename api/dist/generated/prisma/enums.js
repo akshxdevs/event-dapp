@@ -9,10 +9,20 @@
 * 🟢 You can import this file directly.
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentMethod = void 0;
+exports.EventCategory = exports.PaymentMethod = void 0;
 exports.PaymentMethod = {
     UPI: 'UPI',
     USDC: 'USDC',
     SOL: 'SOL',
     CASH: 'CASH'
+};
+exports.EventCategory = {
+    Tech: 'Tech',
+    Ai: 'Ai',
+    Crypto: 'Crypto',
+    Wellness: 'Wellness',
+    Food_Drink: 'Food_Drink',
+    Arts_Culture: 'Arts_Culture',
+    Fitness: 'Fitness',
+    Climate: 'Climate'
 };

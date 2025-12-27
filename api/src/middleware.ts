@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import { JWT_SECRET } from "./config";
 interface AuthRequest extends Request{
     userId: string,
@@ -22,10 +22,13 @@ export function authMiddleware(req:AuthRequest,res:Response,next:NextFunction) {
         const decoded = jwt.verify(
             token,
             JWT_SECRET as string
-        ) as AuthRequest;
+        ) as JwtPayload;
         let userId = req.userId;
         userId = decoded as any;
-        console.log({decoded,userId});
+        if (userId === decoded.sub as string){
+            console.log("Auth Success!");
+            return next();
+        }
         next();
     } catch (error) {
         return res.status(401).json({

@@ -42,6 +42,7 @@ model Event {
   eventHostedBy String
   eventPrice Float?
   eventTags String?
+  eventCategory EventCategory
   userEnrolled UserEnrolledEvents[]
   eventDate DateTime @updatedAt
   CreatedAt DateTime @default(now())
@@ -83,4 +84,15 @@ enum PaymentMethod {
   USDC
   SOL
   CASH
+}
+
+enum EventCategory {
+  Tech
+  Ai
+  Crypto
+  Wellness
+  Food_Drink
+  Arts_Culture
+  Fitness
+  Climate
 }

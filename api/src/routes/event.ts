@@ -1,10 +1,15 @@
 import express from "express";
 import { eventSchema } from "../types";
 import { prismaClient } from "../db/db";
+import { authMiddleware } from "../middleware";
 
 const router = express.Router();
 
-router.post("/create",async(req,res)=>{
+interface AuthRequest extends Request{
+    userId: string,
+}
+
+router.post("/create",authMiddleware as any,async(req,res)=>{
     try {
         const body = eventSchema.safeParse(req.body);
         if (!body.success) {

@@ -115,6 +115,7 @@ exports.EventScalarFieldEnum = {
     eventHostedBy: 'eventHostedBy',
     eventPrice: 'eventPrice',
     eventTags: 'eventTags',
+    eventCategory: 'eventCategory',
     eventDate: 'eventDate',
     CreatedAt: 'CreatedAt'
 };

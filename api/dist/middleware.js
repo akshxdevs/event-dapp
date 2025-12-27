@@ -21,7 +21,10 @@ function authMiddleware(req, res, next) {
         const decoded = jsonwebtoken_1.default.verify(token, config_1.JWT_SECRET);
         let userId = req.userId;
         userId = decoded;
-        console.log({ decoded, userId });
+        if (userId === decoded.sub) {
+            console.log("Auth Success!");
+            return next();
+        }
         next();
     }
     catch (error) {
