@@ -96,6 +96,47 @@ router.post("/update/:id",async(req,res)=>{
     }
 });
 
+router.post("/status/update/:id",async(req,res)=>{
+    try {
+        const eventId = req.params.id;
+        const statusUpdatation = req.body.value;
+        switch (statusUpdatation) {
+            case "ended":
+                closeEvent(eventId);
+                break;
+            case "closed":
+                break;
+            case "on-hold":
+                break;
+            case "Postponed":
+                break;
+        }
+    } catch (error) {
+        console.error((error as Error).message);
+        res.status(403).send({error:"Error: Something went wrong!"})
+    }
+});
 
+async function closeEvent(eventId:string) {
+    const event = await prismaClient.event.findFirst({
+        where:{
+            id:eventId
+        },
+    });
+    const eventDate = new Date(String(event?.eventDate));
+    const now  = new Date();
+    const isEventFinished = eventDate > now;
+    if (isEventFinished) {
+        await prismaClient.event.update({
+            where:{
+                id:eventId,
+            },
+            data:{
+                eventStaus:"Ended",
+            }
+        });
+        return console.log("event status changed to ended successfully");
+    };
+}
 
 export const eventRouter = router;

@@ -1,5 +1,5 @@
 import z from "zod"
-import { EventCategory } from "./generated/prisma/enums";
+import { EventCategory, EventStatus } from "./generated/prisma/enums";
 
 export const signupSchema = z.object({ 
   email:z.email(),  
@@ -20,4 +20,5 @@ export const eventSchema = z.object({
   eventTags: z.string(),
   eventCategory: z.nativeEnum(EventCategory),
   eventDate: z.coerce.date(),
+  EventStatus: z.nativeEnum(EventStatus).default(EventStatus.Open),
 });

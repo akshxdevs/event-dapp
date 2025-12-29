@@ -42,6 +42,7 @@ model Event {
   eventHostedBy String
   eventPrice Float?
   eventTags String?
+  eventStaus EventStatus?
   eventCategory EventCategory
   userEnrolled UserEnrolledEvents[]
   eventDate DateTime @updatedAt
@@ -84,6 +85,15 @@ enum PaymentMethod {
   USDC
   SOL
   CASH
+}
+
+enum EventStatus{
+  Active
+  Open
+  Closed
+  Ended
+  Postponed
+  On_Hold
 }
 
 enum EventCategory {
