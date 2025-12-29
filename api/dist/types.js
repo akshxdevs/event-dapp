@@ -23,4 +23,5 @@ exports.eventSchema = zod_1.default.object({
     eventTags: zod_1.default.string(),
     eventCategory: zod_1.default.nativeEnum(enums_1.EventCategory),
     eventDate: zod_1.default.coerce.date(),
+    EventStatus: zod_1.default.nativeEnum(enums_1.EventStatus).default(enums_1.EventStatus.Open),
 });

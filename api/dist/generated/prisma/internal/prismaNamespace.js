@@ -143,6 +143,7 @@ exports.EventScalarFieldEnum = {
     eventHostedBy: 'eventHostedBy',
     eventPrice: 'eventPrice',
     eventTags: 'eventTags',
+    eventStatus: 'eventStatus',
     eventCategory: 'eventCategory',
     eventDate: 'eventDate',
     CreatedAt: 'CreatedAt'

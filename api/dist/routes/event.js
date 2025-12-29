@@ -17,6 +17,7 @@ const express_1 = __importDefault(require("express"));
 const types_1 = require("../types");
 const db_1 = require("../db/db");
 const middleware_1 = require("../middleware");
+const enums_1 = require("../generated/prisma/enums");
 const router = express_1.default.Router();
 router.post("/create", middleware_1.authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -114,4 +115,50 @@ router.post("/update/:id", (req, res) => __awaiter(void 0, void 0, void 0, funct
         res.status(403).send({ error: "Error: Something went wrong!" });
     }
 }));
+router.post("/status/update/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const eventId = req.params.id;
+        const status = String(req.body.value).toLowerCase();
+        if (!eventId || !status) {
+            return res.status(400).json({ error: "Invalid input" });
+        }
+        switch (status) {
+            case "ended":
+                yield closeEvent(eventId);
+                return res.status(200).json({ message: "Event ended successfully" });
+            case "closed":
+            case "on-hold":
+            case "postponed":
+                return res.status(200).json({ message: "Status acknowledged" });
+            default:
+                return res.status(400).json({ error: "Invalid status value" });
+        }
+    }
+    catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: "Internal server error" });
+    }
+}));
+function closeEvent(eventId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const event = yield db_1.prismaClient.event.findUnique({
+            where: { id: eventId },
+        });
+        if (!event) {
+            throw new Error("Event not found");
+        }
+        const eventDate = new Date(event.eventDate);
+        const now = new Date();
+        const isEventFinished = now >= eventDate;
+        if (!isEventFinished) {
+            throw new Error("Event has not finished yet");
+        }
+        yield db_1.prismaClient.event.update({
+            where: { id: eventId },
+            data: {
+                eventStatus: enums_1.EventStatus.Closed,
+            },
+        });
+    });
+}
 exports.eventRouter = router;

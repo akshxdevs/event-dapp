@@ -2,6 +2,7 @@ import express from "express";
 import { eventSchema } from "../types";
 import { prismaClient } from "../db/db";
 import { authMiddleware } from "../middleware";
+import { EventStatus } from "../generated/prisma/enums";
 
 const router = express.Router();
 
@@ -96,47 +97,59 @@ router.post("/update/:id",async(req,res)=>{
     }
 });
 
-router.post("/status/update/:id",async(req,res)=>{
-    try {
-        const eventId = req.params.id;
-        const statusUpdatation = req.body.value;
-        switch (statusUpdatation) {
-            case "ended":
-                closeEvent(eventId);
-                break;
-            case "closed":
-                break;
-            case "on-hold":
-                break;
-            case "Postponed":
-                break;
-        }
-    } catch (error) {
-        console.error((error as Error).message);
-        res.status(403).send({error:"Error: Something went wrong!"})
+router.post("/status/update/:id", async (req, res) => {
+  try {
+    const eventId = req.params.id;
+    const status = String(req.body.value).toLowerCase();
+
+    if (!eventId || !status) {
+      return res.status(400).json({ error: "Invalid input" });
     }
+
+    switch (status) {
+      case "ended":
+        await closeEvent(eventId);
+        return res.status(200).json({ message: "Event ended successfully" });
+      case "closed":
+      case "on-hold":
+      case "postponed":
+        return res.status(200).json({ message: "Status acknowledged" });
+
+      default:
+        return res.status(400).json({ error: "Invalid status value" });
+    }
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
 });
 
-async function closeEvent(eventId:string) {
-    const event = await prismaClient.event.findFirst({
-        where:{
-            id:eventId
-        },
-    });
-    const eventDate = new Date(String(event?.eventDate));
-    const now  = new Date();
-    const isEventFinished = eventDate > now;
-    if (isEventFinished) {
-        await prismaClient.event.update({
-            where:{
-                id:eventId,
-            },
-            data:{
-                eventStaus:"Ended",
-            }
-        });
-        return console.log("event status changed to ended successfully");
-    };
+
+async function closeEvent(eventId: string) {
+  const event = await prismaClient.event.findUnique({
+    where: { id: eventId },
+  });
+
+  if (!event) {
+    throw new Error("Event not found");
+  }
+
+  const eventDate = new Date(event.eventDate);
+  const now = new Date();
+
+  const isEventFinished = now >= eventDate;
+
+  if (!isEventFinished) {
+    throw new Error("Event has not finished yet");
+  }
+
+  await prismaClient.event.update({
+    where: { id: eventId },
+    data: {
+      eventStatus: EventStatus.Closed,
+    },
+  });
 }
+
 
 export const eventRouter = router;

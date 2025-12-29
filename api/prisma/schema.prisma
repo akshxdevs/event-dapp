@@ -42,7 +42,7 @@ model Event {
   eventHostedBy String
   eventPrice Float?
   eventTags String?
-  eventStaus EventStatus?
+  eventStatus EventStatus?
   eventCategory EventCategory
   userEnrolled UserEnrolledEvents[]
   eventDate DateTime @updatedAt
