@@ -5,10 +5,6 @@ import { authMiddleware } from "../middleware";
 
 const router = express.Router();
 
-interface AuthRequest extends Request{
-    userId: string,
-}
-
 router.post("/create",authMiddleware as any,async(req,res)=>{
     try {
         const body = eventSchema.safeParse(req.body);
