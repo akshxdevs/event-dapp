@@ -21,6 +21,8 @@ model User {
   profilePic String?
   createdAt DateTime @default(now())
   eventsEnrolled String?
+  booking Booking[]
+  payments Payment[]
   event UserEnrolledEvents[]
   tickets Ticket[] 
 }
@@ -45,6 +47,7 @@ model Event {
   eventStatus EventStatus?
   eventCategory EventCategory
   userEnrolled UserEnrolledEvents[]
+  booking Booking[]
   eventDate DateTime @updatedAt
   CreatedAt DateTime @default(now())
   eventLocation Location[]
@@ -71,12 +74,19 @@ model Ticket {
 
 model Payment {
   id String @id @default(uuid())
+  userId String
+  user User @relation(fields: [userId],references: [id])
   paymentMethod PaymentMethod
+  paymentStatus PaymentStatus
   createdAt DateTime @default(now())
 }
 
 model Booking {
   id String @id @default(uuid())
+  userId String
+  eventId String
+  user User @relation(fields: [userId],references: [id])
+  event Event @relation(fields: [eventId],references: [id])
   createdAt DateTime @default(now())
 }
 
@@ -93,7 +103,7 @@ enum EventStatus{
   Closed
   Ended
   Postponed
-  On_Hold
+  On_Holds
 }
 
 enum EventCategory {
@@ -105,4 +115,13 @@ enum EventCategory {
   Arts_Culture
   Fitness
   Climate
+}
+
+enum PaymentStatus {
+  Paid
+  Failed
+  Initailized
+  Refund_Intailized
+  Retry
+  No_Response
 }
