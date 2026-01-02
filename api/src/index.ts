@@ -6,8 +6,10 @@ import { eventRouter } from "./routes/event";
 import { bookingRouter } from "./routes/booking";
 import { paymentRouter } from "./routes/payment";
 import { ticketRouter } from "./routes/ticket";
-
+import http from "http";
+import { subscribe, wss } from "./ws";
 const app = express();
+const server = http.createServer(app);
 
 app.use(express.json());
 app.use(cors());
@@ -18,6 +20,20 @@ app.use("/api/v1/booking/",bookingRouter);
 app.use("/api/v1/payment/",paymentRouter);
 app.use("/api/v1/ticket/",ticketRouter);
 
-app.listen(PORT,()=>{
+server.on("upgrade",(req,socket,head)=>{
+    wss.handleUpgrade(req,socket,head,(ws:any)=>{
+        const url = new URL(req.url!, "http://localhost");
+        const paymentId = url.searchParams.get("paymentId");
+    
+        if (!paymentId) {
+            ws.close();
+            return;
+        }
+        subscribe(paymentId, ws as any);
+    });
+});
+
+
+server.listen(PORT,()=>{
     console.log(`server running on port ${PORT}`);
 });

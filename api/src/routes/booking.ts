@@ -1,5 +1,6 @@
 import express from "express";
 import { prismaClient } from "../db/db";
+import { authMiddleware } from "../middleware";
 
 const router = express.Router();
 
@@ -25,9 +26,15 @@ router.get("/book/:userId", async (req, res) => {
   }
 });
 
-router.post("/book/:id", async (req, res) => {
+router.post("/book/:id", authMiddleware as any,async (req, res) => {
   try {
     const eventId = req.params.id;
+    const existEvent = await prismaClient.event.findUnique({
+      where:{
+        id:eventId
+      }
+    });
+    if (!existEvent) return res.status(402).json({message:"Event removed or not exist!"});
     const booking = await prismaClient.booking.create({
       data:{
         eventId:eventId,

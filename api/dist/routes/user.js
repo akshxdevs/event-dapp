@@ -74,7 +74,7 @@ router.post("/login", (req, res) => __awaiter(void 0, void 0, void 0, function* 
         ;
         const token = jsonwebtoken_1.default.sign({ sub: user.id }, config_1.JWT_SECRET, { expiresIn: '1h' });
         return res.status(200).json({
-            message: "Login Successfull",
+            message: `User ${user.id} Login Successfull`,
             token: token
         });
     }

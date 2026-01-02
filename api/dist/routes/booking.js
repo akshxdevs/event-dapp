@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.bookingRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const db_1 = require("../db/db");
+const middleware_1 = require("../middleware");
 const router = express_1.default.Router();
 router.get("/book/:userId", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -38,9 +39,16 @@ router.get("/book/:userId", (req, res) => __awaiter(void 0, void 0, void 0, func
         return res.status(500).json({ error: "Internal server error" });
     }
 }));
-router.post("/book/:id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+router.post("/book/:id", middleware_1.authMiddleware, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const eventId = req.params.id;
+        const existEvent = yield db_1.prismaClient.event.findUnique({
+            where: {
+                id: eventId
+            }
+        });
+        if (!existEvent)
+            return res.status(402).json({ message: "Event removed or not exist!" });
         const booking = yield db_1.prismaClient.booking.create({
             data: {
                 eventId: eventId,

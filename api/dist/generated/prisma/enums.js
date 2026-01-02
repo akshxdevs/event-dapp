@@ -9,7 +9,7 @@
 * 🟢 You can import this file directly.
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.PaymentStatus = exports.EventCategory = exports.EventStatus = exports.PaymentMethod = void 0;
+exports.ResponseStatus = exports.PaymentStatus = exports.EventCategory = exports.EventStatus = exports.PaymentMethod = void 0;
 exports.PaymentMethod = {
     UPI: 'UPI',
     USDC: 'USDC',
@@ -41,4 +41,11 @@ exports.PaymentStatus = {
     Refund_Intailized: 'Refund_Intailized',
     Retry: 'Retry',
     No_Response: 'No_Response'
+};
+exports.ResponseStatus = {
+    RISED: 'RISED',
+    PAID: 'PAID',
+    NOT_PROCESSED: 'NOT_PROCESSED',
+    FAILED: 'FAILED',
+    REFUND_INTIALIZED: 'REFUND_INTIALIZED'
 };

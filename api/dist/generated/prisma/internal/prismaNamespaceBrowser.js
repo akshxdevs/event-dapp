@@ -48,7 +48,7 @@ var __importStar = (this && this.__importStar) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.BookingScalarFieldEnum = exports.PaymentScalarFieldEnum = exports.TicketScalarFieldEnum = exports.LocationScalarFieldEnum = exports.EventScalarFieldEnum = exports.UserEnrolledEventsScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
+exports.NullsOrder = exports.QueryMode = exports.SortOrder = exports.ResponseScalarFieldEnum = exports.BookingScalarFieldEnum = exports.PaymentScalarFieldEnum = exports.TicketScalarFieldEnum = exports.LocationScalarFieldEnum = exports.EventScalarFieldEnum = exports.UserEnrolledEventsScalarFieldEnum = exports.UserScalarFieldEnum = exports.TransactionIsolationLevel = exports.ModelName = exports.AnyNull = exports.JsonNull = exports.DbNull = exports.NullTypes = exports.Decimal = void 0;
 const runtime = __importStar(require("@prisma/client/runtime/index-browser"));
 exports.Decimal = runtime.Decimal;
 exports.NullTypes = {
@@ -81,7 +81,8 @@ exports.ModelName = {
     Location: 'Location',
     Ticket: 'Ticket',
     Payment: 'Payment',
-    Booking: 'Booking'
+    Booking: 'Booking',
+    Response: 'Response'
 };
 /*
  * Enums
@@ -147,6 +148,12 @@ exports.BookingScalarFieldEnum = {
     userId: 'userId',
     eventId: 'eventId',
     createdAt: 'createdAt'
+};
+exports.ResponseScalarFieldEnum = {
+    id: 'id',
+    userId: 'userId',
+    paymentId: 'paymentId',
+    responseStatus: 'responseStatus'
 };
 exports.SortOrder = {
     asc: 'asc',
