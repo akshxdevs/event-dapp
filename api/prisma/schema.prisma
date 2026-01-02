@@ -90,6 +90,13 @@ model Booking {
   createdAt DateTime @default(now())
 }
 
+model Response {
+  id String @id @default(uuid())
+  userId String
+  paymentId String
+  responseStatus ResponseStatus 
+}
+
 enum PaymentMethod {
   UPI
   USDC
@@ -124,4 +131,12 @@ enum PaymentStatus {
   Refund_Intailized
   Retry
   No_Response
+}
+
+enum ResponseStatus{
+  RISED
+  PAID
+  NOT_PROCESSED
+  FAILED
+  REFUND_INTIALIZED
 }

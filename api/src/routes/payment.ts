@@ -1,6 +1,6 @@
 import express from "express";
 import { prismaClient } from "../db/db";
-import { PaymentStatus } from "../generated/prisma/enums";
+import { PaymentStatus, ResponseStatus } from "../generated/prisma/enums";
 
 const router = express.Router();
 
@@ -10,7 +10,6 @@ router.get("/get/:userId", async (req, res) => {
     const payment = await prismaClient.payment.findFirst({
       where:{
         userId:userId,
-        eventId:req.body.eventId
       }
     });
     if (!payment) {
@@ -26,6 +25,25 @@ router.get("/get/:userId", async (req, res) => {
   }
 });
 
+router.post("/status/check/:id",async(req,res)=>{
+  try {
+    const paymentId = req.body.id;
+    const responseStatus = req.body.responseStatus;
+    const response = await prismaClient.response.update({
+     where:{
+      id:req.params.id,
+      paymentId:paymentId
+     },
+     data:{
+      responseStatus:responseStatus
+     }
+    });
+  }catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 router.post("/pay/:userId", async (req, res) => {
   try {
     const paymentMethod = req.body.paymentMethod
@@ -36,8 +54,14 @@ router.post("/pay/:userId", async (req, res) => {
         paymentMethod:paymentMethod
       }
     });
-    let response = "Paid";
-    const contractResponse = response;
+    const response = await prismaClient.response.create({
+      data: {
+        paymentId:payment.id,
+        userId:payment.userId,
+        responseStatus:ResponseStatus.RISED
+      }
+    })
+    const contractResponse = response.responseStatus;
     switch (contractResponse.toLocaleUpperCase()) {
     case "PAID":
         await prismaClient.payment.update({
