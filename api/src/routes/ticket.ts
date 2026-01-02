@@ -39,7 +39,7 @@ router.post("/generate/:userId",async(req,res)=>{
         console.error(error);
         return res.status(500).json({ error: "Internal server error" });
   }
-})
+});
 
 router.get("/get/:userId",async(req,res)=>{
     try {
