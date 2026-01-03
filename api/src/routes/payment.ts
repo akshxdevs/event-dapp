@@ -28,7 +28,9 @@ router.get("/get/:userId", async (req, res) => {
 
 router.post("/status/check/:id",async(req,res)=>{
   try {
-    const paymentId = req.body.id;
+    const paymentId = req.body.paymentId;
+    console.log({paymentId});
+    
     const responseStatus = req.body.responseStatus;
     const userId = req.body.userId;
     const response = await prismaClient.response.update({
@@ -40,11 +42,19 @@ router.post("/status/check/:id",async(req,res)=>{
       responseStatus:responseStatus
      }
     });
-    notify(paymentId,{
-      type:"PAYMENT_STATUS_UPDATE",
-      paymentId,
-      responseStatus
-    });
+
+    try {
+      console.log({paymentId});
+      notify(paymentId,{
+        paymentId,
+        responseStatus,
+      });
+      console.log("Respose sent, payment updated", responseStatus, paymentId,);
+      
+    } catch (error) {
+      console.log("Error: ",(error as Error).message);
+      
+    }
     res.json({
       message:"Response updated successfully",
       response:response
@@ -72,29 +82,11 @@ router.post("/pay/:userId", async (req, res) => {
         responseStatus:ResponseStatus.RISED
       }
     });
-    const contractResponse = response.responseStatus;
-    switch (contractResponse.toLocaleUpperCase()) {
-    case "PAID":
-        await prismaClient.payment.update({
-        where: { id: payment.id },
-        data: { paymentStatus: PaymentStatus.Paid },
-        });
-        return res.status(200).json({ message: "Payment successful" });
-
-    case "NOT_PROCESSED":
-        await prismaClient.payment.update({
-        where: { id: payment.id },
-        data: { paymentStatus: PaymentStatus.Refund_Intailized },
-        });
-        return res.status(202).json({ message: "Refund initiated" });
-
-    default:
-        await prismaClient.payment.update({
-        where: { id: payment.id },
-        data: { paymentStatus: PaymentStatus.Failed },
-        });
-        return res.status(408).json({ message: "Payment failed (no response)" });
-        }
+    res.json({
+      message:"Payment & Response created successfully",
+      payment:payment,
+      response:response
+    });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ error: "Internal server error" });
