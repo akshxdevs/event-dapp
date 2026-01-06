@@ -165,11 +165,15 @@ exports.TicketScalarFieldEnum = {
 };
 exports.PaymentScalarFieldEnum = {
     id: 'id',
+    userId: 'userId',
     paymentMethod: 'paymentMethod',
+    paymentStatus: 'paymentStatus',
     createdAt: 'createdAt'
 };
 exports.BookingScalarFieldEnum = {
     id: 'id',
+    userId: 'userId',
+    eventId: 'eventId',
     createdAt: 'createdAt'
 };
 exports.SortOrder = {

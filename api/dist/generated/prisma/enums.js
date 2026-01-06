@@ -9,7 +9,7 @@
 * 🟢 You can import this file directly.
 */
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EventCategory = exports.EventStatus = exports.PaymentMethod = void 0;
+exports.PaymentStatus = exports.EventCategory = exports.EventStatus = exports.PaymentMethod = void 0;
 exports.PaymentMethod = {
     UPI: 'UPI',
     USDC: 'USDC',
@@ -22,7 +22,7 @@ exports.EventStatus = {
     Closed: 'Closed',
     Ended: 'Ended',
     Postponed: 'Postponed',
-    On_Hold: 'On_Hold'
+    On_Holds: 'On_Holds'
 };
 exports.EventCategory = {
     Tech: 'Tech',
@@ -33,4 +33,12 @@ exports.EventCategory = {
     Arts_Culture: 'Arts_Culture',
     Fitness: 'Fitness',
     Climate: 'Climate'
+};
+exports.PaymentStatus = {
+    Paid: 'Paid',
+    Failed: 'Failed',
+    Initailized: 'Initailized',
+    Refund_Intailized: 'Refund_Intailized',
+    Retry: 'Retry',
+    No_Response: 'No_Response'
 };
