@@ -25,7 +25,7 @@ export const AppBar = () => {
     }
 
     return <div className='py-2 px-1 md:px-5'>
-        <div className="flex justify-between text-sm">
+        <div className="flex justify-between text-md">
             <div className='max-w-[10%] w-full flex items-center'>
                 <button onClick={()=>router.push("/login")}>
                     <MdEvent size={30}/>
