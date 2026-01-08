@@ -7,7 +7,7 @@ import { LuTicket } from 'react-icons/lu';
 import { MdEvent, MdExplore } from 'react-icons/md';
 
 export const AppBar = () => {
-    const {data:session} = useSession();
+    const session = true;
     const router = useRouter();
     function formatTimeWithGMT(date = new Date()) {
         const hours = date.getHours(); 
@@ -28,37 +28,37 @@ export const AppBar = () => {
         <div className="flex justify-between text-sm">
             <div className='max-w-[10%] w-full flex items-center'>
                 <button onClick={()=>router.push("/login")}>
-                    <MdEvent size={25}/>
+                    <MdEvent size={30}/>
                 </button>
             </div>
             {session &&(
             <div className='max-w-[35%] w-full flex items-center gap-1 md:gap-4'>
-                <button className='flex items-center gap-1'>
+                <button onClick={()=>router.push("/events")} className='flex items-center gap-1 cursor-pointer'>
                     <LuTicket size={20} />
                     <h3 className='hidden md:block'>Events</h3>
                 </button>
-                <button onClick={()=>router.push("/login")} className='flex items-center gap-1'>
+                <button onClick={()=>router.push("/calender")} className='flex items-center gap-1 cursor-pointer'>
                     <BiCalendarHeart size={20}/>
-                    <h3  className='hidden md:block'>Calenders</h3>
+                    <h3  className='hidden md:block text-white/50'>Calenders</h3>
                 </button>
-                <button onClick={()=>router.push("/discover")} className='flex items-center gap-1'>
+                <button onClick={()=>router.push("/discover")} className='flex items-center gap-1 cursor-pointer'>
                     <MdExplore size={20}/>
-                    <h3 className='hidden md:block'>Discover</h3>
+                    <h3 className='hidden md:block text-white/50'>Discover</h3>
                 </button>
             </div>
             )}
             <div className='w-fit flex items-center gap-2 md:gap-4'>
                 {session ?(
                     <div className='flex items-center gap-4'>
-                        <h3 className='hidden md:block'>{formatTimeWithGMT()}</h3>
+                        <h3 className='hidden md:block text-white/50'>{formatTimeWithGMT()}</h3>
                         <button>
                             <h3>Create Event</h3>
                         </button>
                     </div>
                 ):(
                     <div className='flex items-center gap-4'>
-                        <h3 className='hidden md:block'>{formatTimeWithGMT()}</h3>
-                        <button onClick={()=>router.push("/discover")} className='flex items-center gap-1'>
+                        <h3 className='hidden md:block text-white/50'>{formatTimeWithGMT()}</h3>
+                        <button onClick={()=>router.push("/discover")} className='flex items-center gap-1 cursor-pointer'>
                             <h3>Explore Event</h3>
                             <BsArrow90DegRight className='mt-3'/>
                         </button>
@@ -66,12 +66,12 @@ export const AppBar = () => {
                 )}
                 <div className='flex items-center gap-1 md:gap-2'>
                     {session &&(
-                    <button>
+                    <button className='text-white/50'>
                         <BiSearch size={20}/>
                     </button>
                     )}
                     {session && (
-                    <button>
+                    <button className='text-white/50'>
                         <BiSolidBell size={20}/>
                     </button>
                     )}

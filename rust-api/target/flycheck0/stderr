@@ -1,5 +1,5 @@
-   0.026781344s  INFO prepare_target{force=false package_id=rust-api v0.1.0 (/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api) target="rust-api"}: cargo::core::compiler::fingerprint: fingerprint error for rust-api v0.1.0 (/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api)/Check { test: false }/TargetInner { name: "rust-api", doc: true, ..: with_path("/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api/src/main.rs", Edition2024) }
-   0.026801171s  INFO prepare_target{force=false package_id=rust-api v0.1.0 (/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api) target="rust-api"}: cargo::core::compiler::fingerprint:     err: failed to read `/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api/target/debug/.fingerprint/rust-api-5ee7326267b82878/bin-rust-api`
+   0.025904074s  INFO prepare_target{force=false package_id=rust-api v0.1.0 (/home/akshxdevs/codes/projects/web3/event-dapp/rust-api) target="rust-api"}: cargo::core::compiler::fingerprint: fingerprint error for rust-api v0.1.0 (/home/akshxdevs/codes/projects/web3/event-dapp/rust-api)/Check { test: false }/TargetInner { name: "rust-api", doc: true, ..: with_path("/home/akshxdevs/codes/projects/web3/event-dapp/rust-api/src/main.rs", Edition2024) }
+   0.025975297s  INFO prepare_target{force=false package_id=rust-api v0.1.0 (/home/akshxdevs/codes/projects/web3/event-dapp/rust-api) target="rust-api"}: cargo::core::compiler::fingerprint:     err: failed to read `/home/akshxdevs/codes/projects/web3/event-dapp/rust-api/target/debug/.fingerprint/rust-api-2f1c67b5dca0bc0a/bin-rust-api`
 
 Caused by:
     No such file or directory (os error 2)
@@ -20,29 +20,29 @@ Stack backtrace:
   12: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
   13: std::rt::lang_start::<()>::{closure#0}
   14: core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/core/src/ops/function.rs:287:21
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/core/src/ops/function.rs:287:21
   15: std::panicking::catch_unwind::do_call
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panicking.rs:590:40
   16: std::panicking::catch_unwind
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panicking.rs:553:19
   17: std::panic::catch_unwind
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panic.rs:359:14
   18: std::rt::lang_start_internal::{{closure}}
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:175:24
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/rt.rs:175:24
   19: std::panicking::catch_unwind::do_call
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panicking.rs:590:40
   20: std::panicking::catch_unwind
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panicking.rs:553:19
   21: std::panic::catch_unwind
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panic.rs:359:14
   22: std::rt::lang_start_internal
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:171:5
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/rt.rs:171:5
   23: main
   24: __libc_start_call_main
-  25: __libc_start_main_alias_2
+  25: __libc_start_main_alias_1
   26: <unknown>
-   0.042133124s  INFO prepare_target{force=false package_id=rust-api v0.1.0 (/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api) target="rust-api"}: cargo::core::compiler::fingerprint: fingerprint error for rust-api v0.1.0 (/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api)/Check { test: true }/TargetInner { name: "rust-api", doc: true, ..: with_path("/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api/src/main.rs", Edition2024) }
-   0.042148584s  INFO prepare_target{force=false package_id=rust-api v0.1.0 (/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api) target="rust-api"}: cargo::core::compiler::fingerprint:     err: failed to read `/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api/target/debug/.fingerprint/rust-api-f6212606d44990a6/test-bin-rust-api`
+   0.052216215s  INFO prepare_target{force=false package_id=rust-api v0.1.0 (/home/akshxdevs/codes/projects/web3/event-dapp/rust-api) target="rust-api"}: cargo::core::compiler::fingerprint: fingerprint error for rust-api v0.1.0 (/home/akshxdevs/codes/projects/web3/event-dapp/rust-api)/Check { test: true }/TargetInner { name: "rust-api", doc: true, ..: with_path("/home/akshxdevs/codes/projects/web3/event-dapp/rust-api/src/main.rs", Edition2024) }
+   0.052277548s  INFO prepare_target{force=false package_id=rust-api v0.1.0 (/home/akshxdevs/codes/projects/web3/event-dapp/rust-api) target="rust-api"}: cargo::core::compiler::fingerprint:     err: failed to read `/home/akshxdevs/codes/projects/web3/event-dapp/rust-api/target/debug/.fingerprint/rust-api-a9b32163b9ab12fb/test-bin-rust-api`
 
 Caused by:
     No such file or directory (os error 2)
@@ -63,26 +63,26 @@ Stack backtrace:
   12: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
   13: std::rt::lang_start::<()>::{closure#0}
   14: core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/core/src/ops/function.rs:287:21
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/core/src/ops/function.rs:287:21
   15: std::panicking::catch_unwind::do_call
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panicking.rs:590:40
   16: std::panicking::catch_unwind
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panicking.rs:553:19
   17: std::panic::catch_unwind
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panic.rs:359:14
   18: std::rt::lang_start_internal::{{closure}}
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:175:24
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/rt.rs:175:24
   19: std::panicking::catch_unwind::do_call
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panicking.rs:590:40
   20: std::panicking::catch_unwind
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panicking.rs:553:19
   21: std::panic::catch_unwind
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/panic.rs:359:14
   22: std::rt::lang_start_internal
-             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:171:5
+             at /rustc/ded5c06cf21d2b93bffd5d884aa6e96934ee4234/library/std/src/rt.rs:171:5
   23: main
   24: __libc_start_call_main
-  25: __libc_start_main_alias_2
+  25: __libc_start_main_alias_1
   26: <unknown>
-    Checking rust-api v0.1.0 (/home/akshxdevs/Codes/projects/web3/event-dapp/rust-api)
-    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.20s
+    Checking rust-api v0.1.0 (/home/akshxdevs/codes/projects/web3/event-dapp/rust-api)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.50s
