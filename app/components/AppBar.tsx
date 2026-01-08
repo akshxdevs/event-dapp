@@ -32,7 +32,7 @@ export const AppBar = () => {
                 </button>
             </div>
             {session &&(
-            <div className='max-w-[35%] w-full flex items-center gap-1 md:gap-4'>
+            <div className='max-w-[45%] w-full flex items-center gap-1 md:gap-10'>
                 <button onClick={()=>router.push("/events")} className='flex items-center gap-1 cursor-pointer'>
                     <LuTicket size={20} />
                     <h3 className='hidden md:block'>Events</h3>

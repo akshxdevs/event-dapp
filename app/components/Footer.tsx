@@ -8,8 +8,8 @@ export const Footer = () => {
   const router = useRouter();
 
   return (
-    <footer className="fixed bottom-0 left-0 px-2 md:px-32 w-full border-t border-zinc-800">
-      <div className="flex justify-between items-center text-sm mt-5">
+    <footer className="fixed bottom-0 left-0 px-2 md:px-[300px] w-full py-8">
+      <div className="flex justify-between items-center text-sm">
         <div className="flex items-center gap-4">
           <button onClick={() => router.push("/login")}>
             <MdEvent size={25} />
@@ -25,8 +25,7 @@ export const Footer = () => {
           <BsInstagram />
         </div>
       </div>
-      <div className="flex md:justify-center items-center gap-1 my-2">
-        <h1 className=""></h1>
+      <div className="flex md:justify-center items-center text-sm gap-1 my-2">
         <h1 className="bg-linear-to-r from-blue-500 via-green-500 to-yellow-500 bg-clip-text text-transparent">
           Host your event here
         </h1>
