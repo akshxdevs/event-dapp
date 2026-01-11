@@ -123,7 +123,7 @@ export default function () {
           </div>
           <div className="max-w-[30%] w-full flex flex-col gap-2">
             <button><BsKeyboard size={45} className="bg-yellow-500 p-1 rounded-full" /></button>
-            <h3>Tech</h3>
+            <h3>Events</h3>
             <p>Subscribe to stay up-to-date with the latest events, calendars and other updates.</p>
             <div className="flex flex-col gap-4 pt-2">
               <input
