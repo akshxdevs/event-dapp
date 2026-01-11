@@ -45,6 +45,7 @@ router.post("/pay/:userId", (req, res) => __awaiter(void 0, void 0, void 0, func
         const payment = yield db_1.prismaClient.payment.create({
             data: {
                 userId: req.params.userId,
+                eventId: req.body.eventId,
                 paymentStatus: enums_1.PaymentStatus.Initailized,
                 paymentMethod: paymentMethod
             }

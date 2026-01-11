@@ -44,7 +44,12 @@ router.post("/create", middleware_1.authMiddleware, (req, res) => __awaiter(void
 }));
 router.get("/all", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const events = yield db_1.prismaClient.event.findMany({});
+        const events = yield db_1.prismaClient.event.findMany({
+            include: {
+                userEnrolled: true,
+                eventLocation: true
+            }
+        });
         if (events) {
             return res.json({
                 message: "All events Fetched successfully!",

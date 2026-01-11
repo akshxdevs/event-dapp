@@ -75,6 +75,7 @@ model Ticket {
 model Payment {
   id String @id @default(uuid())
   userId String
+  eventId String
   user User @relation(fields: [userId],references: [id])
   paymentMethod PaymentMethod
   paymentStatus PaymentStatus

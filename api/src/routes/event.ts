@@ -30,7 +30,12 @@ router.post("/create",authMiddleware as any,async(req,res)=>{
 
 router.get("/all",async(req,res)=>{
     try {
-        const events = await prismaClient.event.findMany({});
+        const events = await prismaClient.event.findMany({
+            include: {
+                userEnrolled: true,
+                eventLocation: true
+            }
+        });
         if (events) {
         return res.json({
             message:"All events Fetched successfully!",

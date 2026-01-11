@@ -21,7 +21,7 @@ exports.eventSchema = zod_1.default.object({
     eventHostedBy: zod_1.default.string(),
     eventPrice: zod_1.default.int(),
     eventTags: zod_1.default.string(),
+    eventStatus: zod_1.default.nativeEnum(enums_1.EventStatus).default(enums_1.EventStatus.Active),
     eventCategory: zod_1.default.nativeEnum(enums_1.EventCategory),
     eventDate: zod_1.default.coerce.date(),
-    EventStatus: zod_1.default.nativeEnum(enums_1.EventStatus).default(enums_1.EventStatus.Open),
 });

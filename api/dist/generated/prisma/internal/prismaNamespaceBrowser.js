@@ -138,6 +138,7 @@ exports.TicketScalarFieldEnum = {
 exports.PaymentScalarFieldEnum = {
     id: 'id',
     userId: 'userId',
+    eventId: 'eventId',
     paymentMethod: 'paymentMethod',
     paymentStatus: 'paymentStatus',
     createdAt: 'createdAt'

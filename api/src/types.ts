@@ -18,7 +18,7 @@ export const eventSchema = z.object({
   eventHostedBy: z.string(),
   eventPrice: z.int(),
   eventTags: z.string(),
+  eventStatus: z.nativeEnum(EventStatus).default(EventStatus.Active),
   eventCategory: z.nativeEnum(EventCategory),
   eventDate: z.coerce.date(),
-  EventStatus: z.nativeEnum(EventStatus).default(EventStatus.Open),
 });

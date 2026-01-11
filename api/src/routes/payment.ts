@@ -32,6 +32,7 @@ router.post("/pay/:userId", async (req, res) => {
     const payment = await prismaClient.payment.create({
       data:{
         userId:req.params.userId,
+        eventId:req.body.eventId,
         paymentStatus:PaymentStatus.Initailized,
         paymentMethod:paymentMethod
       }
