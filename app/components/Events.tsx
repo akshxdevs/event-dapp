@@ -6,7 +6,7 @@ import { Footer } from "./Footer"
 export const Events = () => {
     const [activeTab, setActiveTab] = useState<"upcoming" | "past">("upcoming")
 
-    return <div className="px-[300px] mt-16">
+    return <div className="px-75 mt-16">
         <div className="flex justify-between items-center">
             <div>
                 <h1 className="text-2xl">Events</h1>

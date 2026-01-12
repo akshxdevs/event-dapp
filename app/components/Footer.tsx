@@ -8,7 +8,7 @@ export const Footer = () => {
   const router = useRouter();
 
   return (
-    <footer className="fixed bottom-0 left-0 px-2 md:px-[300px] w-full py-8">
+    <footer className="fixed bottom-0 left-0 px-2 md:px-75 w-full py-8">
       <div className="flex justify-between items-center text-sm">
         <div className="flex items-center gap-4">
           <button onClick={() => router.push("/login")}>
