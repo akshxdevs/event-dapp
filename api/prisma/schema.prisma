@@ -18,7 +18,7 @@ model User {
   username String? @unique
   email  String @unique
   password String
-  profilePic String?
+  profilePic String
   createdAt DateTime @default(now())
   eventsEnrolled String?
   booking Booking[]
@@ -48,6 +48,7 @@ model Event {
   eventCategory EventCategory
   userEnrolled UserEnrolledEvents[]
   booking Booking[]
+  eventPlace String?
   eventDate DateTime @updatedAt
   CreatedAt DateTime @default(now())
   eventLocation Location[]
