@@ -1,5 +1,4 @@
 "use client";
-
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { BiSearch } from "react-icons/bi";
@@ -8,9 +7,11 @@ import { MdEvent } from "react-icons/md";
 import { BACKEND_URL } from "../config";
 import { AppBar } from "../components/AppBar";
 import { Footer } from "../components/Footer";
+import { useRouter } from "next/navigation";
 
 export default function () {
   const [events, setEvent] = useState<any[]>([]);
+  const router = useRouter();
   async function getAllEvents() {
     const res = await axios.get(`${BACKEND_URL}/all`);
     if (res.data && res.data.events) {
@@ -75,38 +76,33 @@ export default function () {
                 <button><BiSearch size={25} /></button>
               </div>
             </div>
-            <div className="mt-5 p-5 bg-zinc-800 rounded-lg border border-transparent hover:border-zinc-400 transition-colors duration-300 ease-out">
+            <div className="mt-5 p-5 bg-zinc-800 rounded-lg border border-transparent hover:border-zinc-500 transition-colors duration-300 ease-out">
               {events.length > 0 ? (
                 <div className="flex flex-col gap-4">
                   {events.map((event) => (
-                    <div key={event.id} className="flex justify-between items-center gap-4">
-
+                    <div onClick={()=>{router.push(`events/tech/${event.id}`)}} key={event.id} className="flex justify-between items-center gap-4">
                       <div className="flex flex-col gap-2">
                         <p className="text-sm text-zinc-400">
                           {event.createdAt ? new Date(event.createdAt).toLocaleDateString() : event.CreatedAt ? new Date(event.CreatedAt).toLocaleDateString() : 'N/A'}
                         </p>
-
                         <h1 className="font-semibold">{event.eventName}</h1>
                         <h2 className="text-zinc-300">{event.eventHostedBy}</h2>
-
+                        <div className="flex gap-4 text-sm">
+                          {event.eventStatus === "Closed" && (
+                            <span className="text-red-400">Sold Out</span>
+                          )}
+                        </div>
                         {event.eventLocation && Array.isArray(event.eventLocation) && event.eventLocation.length > 0 && (
                           <h3 className="text-zinc-400">
                             Location: {event.eventLocation[0].lat}, {event.eventLocation[0].long}
                           </h3>
                         )}
-
-                        <div className="flex gap-4 text-sm">
-                          {event.eventStatus === "Closed" && (
-                            <span className="text-red-400">Sold Out</span>
-                          )}
-                          {event.eventStatus === "Active" && (
-                            <span className="text-green-400">Active</span>
-                          )}
-                          {event.eventStatus === "Open" && (
-                            <span className="text-blue-400">Open</span>
-                          )}
-                          <span>{event.userEnrolled?.length ?? 0} enrolled</span>
-
+                        <div>
+                          {event.userEnrolled.map((user:any)=>(
+                            <div key={user.id} className="flex items-center gap-2">
+                              <img src={user.profilePic} alt="profilepics" />
+                            </div>
+                          ))}
                         </div>
                       </div>
                       <div>
